@@ -1,7 +1,9 @@
 <div class="modal-container">
   <div class="modal-dialog"
       role="document">
-    <div class="modal-content">
+    <form #reservationForm="ngForm"
+          class="modal-content"
+          (submit)="onCreateReservation(reservationForm)">
 
       <div class="modal-header">
         <h5 class="modal-title">Add Reservation</h5>
@@ -15,27 +17,35 @@
       </div>
 
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label>Car</label>
-            <select [(ngModel)]="reservation.carId"
-                    name="carId"
-                    class="form-control">
-              <option [value]="car.id"
-                      *ngFor="let car of cars">
-                {{car.carType}} - {{car.plateNumber}}
-              </option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label>Car</label>
+          <select [(ngModel)]="reservation.carId"
+                  name="carId"
+                  required
+                  #carId="ngModel"
+                  class="form-control">
+            <option [value]="car.id"
+                    *ngFor="let car of cars">
+              {{car.carType}} - {{car.plateNumber}}
+            </option>
+          </select>
+          <small class="form-text text-danger"
+                  *ngIf="carId.invalid && reservationForm.submitted">
+            Please select the car
+          </small>
+        </div>
 
+        <div class="form-group">
           <label>From</label>
-          <div class="input-group mb-3">
+          <div class="input-group">
             <input type="text"
-                   class="form-control"
-                   name="fromDate"
-                   [(ngModel)]="reservation.from"
-                   [matDatepicker]="fromPicker"
-                   placeholder="Select start date">
+                  class="form-control"
+                  name="fromDate"
+                  required
+                  #fromDate="ngModel"
+                  [(ngModel)]="reservation.from"
+                  [matDatepicker]="fromPicker"
+                  placeholder="Select start date">
             <mat-datepicker #fromPicker></mat-datepicker>
             <div class="input-group-append">
               <button class="btn btn-outline-secondary"
@@ -45,15 +55,23 @@
               </button>
             </div>
           </div>
+          <small class="form-text text-danger"
+                *ngIf="fromDate.invalid && reservationForm.submitted">
+            Please select the start date
+          </small>
+        </div>
 
+        <div class="form-group">
           <label>To</label>
-          <div class="input-group mb-3">
+          <div class="input-group">
             <input type="text"
-                   class="form-control"
-                   name="toDate"
-                   [(ngModel)]="reservation.to"
-                   [matDatepicker]="toPicker"
-                   placeholder="Select end date">
+                  class="form-control"
+                  name="toDate"
+                  required
+                  #toDate="ngModel"
+                  [(ngModel)]="reservation.to"
+                  [matDatepicker]="toPicker"
+                  placeholder="Select end date">
             <mat-datepicker #toPicker></mat-datepicker>
             <div class="input-group-append">
               <button class="btn btn-outline-secondary"
@@ -63,22 +81,31 @@
               </button>
             </div>
           </div>
+          <small class="form-text text-danger"
+                *ngIf="fromDate.invalid && reservationForm.submitted">
+            Please select the end date
+          </small>
+        </div>
 
-          <div class="form-group">
-            <label>Client Name</label>
-            <input type="text"
-                   class="form-control"
-                   name="clientName"
-                   [(ngModel)]="reservation.clientName"
-                   placeholder="Enter Client's Name">
-          </div>
-        </form>
+        <div class="form-group">
+          <label>Client Name</label>
+          <input type="text"
+                  class="form-control"
+                  name="clientName"
+                  required
+                  #clientName="ngModel"
+                  [(ngModel)]="reservation.clientName"
+                  placeholder="Enter Client's Name">
+          <small class="form-text text-danger"
+                *ngIf="clientName.invalid && reservationForm.submitted">
+            Please enter the client name
+          </small>
+        </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button"
-                class="btn btn-primary"
-                (click)="onCreateReservation()">
+        <button type="submit"
+                class="btn btn-primary">
           Create
         </button>
         <button type="button"
@@ -87,6 +114,6 @@
         </button>
       </div>
 
-    </div>
+    </form>
   </div>
 </div>

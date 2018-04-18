@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 // Models
 import { Reservation } from '../../models/reservation';
@@ -22,7 +23,11 @@ export class AddEditReservationComponent implements OnInit {
   @Output()
   close = new EventEmitter();
 
+  @Output()
+  create = new EventEmitter();
+
   cars: Car[];
+  isFormSubmitted = true;
 
   constructor(
     private carsService: CarsService,
@@ -44,15 +49,16 @@ export class AddEditReservationComponent implements OnInit {
     this.close.emit();
   }
 
-
   /**
    * Create new reservation
    *
    * @memberof AddEditReservationComponent
    */
-  onCreateReservation() {
+  onCreateReservation(reservationForm: NgForm) {
+    if (reservationForm.invalid) { return; }
+
     this.reservationsService.addReservation(this.reservation).subscribe(res => {
-      console.log(res);
+      this.create.emit(res);
     });
   }
 
