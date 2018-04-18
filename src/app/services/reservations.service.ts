@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 // Models
 import { Reservation } from '../models/reservation';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ReservationsService {
@@ -20,7 +21,7 @@ export class ReservationsService {
    * @memberof ReservationsService
    */
   getReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>('http://external.novility.com:9050/car-rental/api/Reservations')
+    return this.http.get<Reservation[]>(`${environment.apiUrl}/Reservations`)
       .map((res: Reservation[]) => {
         res.forEach(r => {
           r.from = new Date(r.from);
@@ -30,8 +31,8 @@ export class ReservationsService {
       });
   }
 
-  addReservation(reservation: Reservation): Observable<boolean> {
-    return this.http.post<boolean>('http://external.novility.com:9050/car-rental/api/Reservations', reservation);
+  addReservation(reservation: Reservation): Observable<Reservation> {
+    return this.http.post<Reservation>(`${environment.apiUrl}/Reservations`, reservation);
   }
 
 }

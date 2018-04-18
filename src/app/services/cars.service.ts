@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 // Models
 import { Car } from '../models/car';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CarsService {
@@ -20,7 +21,7 @@ export class CarsService {
    * @memberof ReservationsService
    */
   getCars(): Observable<Car[]> {
-    return this.http.get<Car[]>('http://external.novility.com:9050/car-rental/api/Cars');
+    return this.http.get<Car[]>(`${environment.apiUrl}/Cars`);
   }
 
 }
