@@ -19,7 +19,7 @@ import { monthNames } from '../constants/month-names';
 })
 export class CalendarComponent implements OnInit {
 
-  startDate: Date = new Date('2018-01-15');
+  startDate: Date = new Date();
   daysLength = 20;
   daysArray: Date[] = [];
   monthsArray: MonthItem[] = [];
@@ -28,7 +28,9 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private reservationsService: ReservationsService
-  ) { }
+  ) {
+    this.startDate.setDate(this.startDate.getDate() - 15);
+  }
 
   ngOnInit() {
     this.generateDaysArray();

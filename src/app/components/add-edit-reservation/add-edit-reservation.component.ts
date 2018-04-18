@@ -20,6 +20,9 @@ export class AddEditReservationComponent implements OnInit {
   @Input()
   reservation: Reservation = new Reservation();
 
+  @Input()
+  isEdit = false;
+
   @Output()
   close = new EventEmitter();
 

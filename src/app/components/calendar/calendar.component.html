@@ -49,5 +49,6 @@
   </div>
 </div>
 
-<app-add-edit-reservation *ngIf="isModalVisible">
+<app-add-edit-reservation *ngIf="isModalVisible"
+                          (close)="isModalVisible = false">
 </app-add-edit-reservation>
