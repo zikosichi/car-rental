@@ -3,14 +3,14 @@ import { detachEmbeddedView } from '@angular/core/src/view';
 import * as _ from 'lodash';
 
 // Modes
-import { MonthItem } from '../models/month-item';
+import { MonthItem } from '../../models/month-item';
 import { Reservation } from '../../models/reservation';
 
 // Services
 import { ReservationsService } from '../../services/reservations.service';
 
 // Constants
-import { monthNames } from '../constants/month-names';
+import { monthNames } from '../../constants/month-names';
 
 @Component({
   selector: 'app-calendar',
