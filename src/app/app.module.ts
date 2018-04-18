@@ -6,11 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { ReservationsService } from './services/reservations.service';
+import { AddEditReservationComponent } from './components/add-edit-reservation/add-edit-reservation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent
+    CalendarComponent,
+    AddEditReservationComponent
   ],
   imports: [
     BrowserModule,

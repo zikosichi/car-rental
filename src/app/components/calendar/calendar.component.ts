@@ -24,6 +24,7 @@ export class CalendarComponent implements OnInit {
   daysArray: Date[] = [];
   monthsArray: MonthItem[] = [];
   reservations: Reservation[] = [];
+  isModalVisible = true;
 
   constructor(
     private reservationsService: ReservationsService
