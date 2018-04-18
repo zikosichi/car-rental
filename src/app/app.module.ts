@@ -12,12 +12,14 @@ import { AddEditReservationComponent } from './components/add-edit-reservation/a
 // Services
 import { ReservationsService } from './services/reservations.service';
 import { CarsService } from './services/cars.service';
+import { CarDetailsComponent } from './components/car-details/car-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    AddEditReservationComponent
+    AddEditReservationComponent,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,

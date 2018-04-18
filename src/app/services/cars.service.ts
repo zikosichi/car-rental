@@ -24,4 +24,15 @@ export class CarsService {
     return this.http.get<Car[]>(`${environment.apiUrl}/Cars`);
   }
 
+  /**
+   * Get car details by id
+   *
+   * @param {number} id
+   * @returns {Observable<Car[]>}
+   * @memberof CarsService
+   */
+  getCarById(id: number): Observable<Car> {
+    return this.http.get<Car>(`${environment.apiUrl}/Cars/${id}`);
+  }
+
 }
