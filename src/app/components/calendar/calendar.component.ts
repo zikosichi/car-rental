@@ -27,6 +27,12 @@ export class CalendarComponent implements OnInit {
   isModalVisible = false;
   selectedReservation: Reservation;
 
+  get endDate(): Date {
+    const newDate = new Date(this.startDate);
+    newDate.setDate(newDate.getDate() + this.daysLength - 1);
+    return newDate;
+  }
+
   constructor(
     private reservationsService: ReservationsService
   ) {

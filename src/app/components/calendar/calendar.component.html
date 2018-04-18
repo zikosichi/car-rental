@@ -43,7 +43,12 @@
               {{reservation.clientName}}
             </span>
           </th>
-          <td></td>
+          <td>
+            <span *ngIf="roundDate(reservation.to) < roundDate(startDate)"
+                  class="text-primary">
+              ...
+            </span>
+          </td>
           <td *ngFor="let day of daysArray"
               class="p-0 position-relative">
             <span *ngIf="isDayReserved(day, reservation)"
@@ -54,7 +59,12 @@
                   >
             </span>
           </td>
-          <td></td>
+          <td>
+            <span *ngIf="roundDate(reservation.from) > roundDate(endDate)"
+                  class="text-primary">
+              ...
+            </span>
+          </td>
         </tr>
       </tbody>
     </table>
