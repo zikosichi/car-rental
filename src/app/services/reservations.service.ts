@@ -32,7 +32,12 @@ export class ReservationsService {
   }
 
   addReservation(reservation: Reservation): Observable<Reservation> {
-    return this.http.post<Reservation>(`${environment.apiUrl}/Reservations`, reservation);
+    return this.http.post<Reservation>(`${environment.apiUrl}/Reservations`, reservation)
+      .map((res: Reservation) => {
+        res.from = new Date(res.from);
+        res.to = new Date(res.to);
+        return res;
+      });
   }
 
 }

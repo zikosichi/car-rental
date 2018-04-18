@@ -50,5 +50,6 @@
 </div>
 
 <app-add-edit-reservation *ngIf="isModalVisible"
-                          (close)="isModalVisible = false">
+                          (close)="isModalVisible = false"
+                          (create)="onReservationCreate($event)">
 </app-add-edit-reservation>

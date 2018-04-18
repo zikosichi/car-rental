@@ -91,15 +91,51 @@ export class CalendarComponent implements OnInit {
     this.generateDaysArray();
   }
 
+  /**
+   * On reservation create
+   *
+   * @memberof CalendarComponent
+   */
+  onReservationCreate(res: Reservation) {
+    this.reservations.push(res);
+    this.isModalVisible = false;
+  }
+
+  /**
+   * Check if day is reserved
+   *
+   * @param {Date} date
+   * @param {Reservation} reservation
+   * @returns
+   * @memberof CalendarComponent
+   */
   isDayReserved(date: Date, reservation: Reservation) {
     return this.roundDate(date) >= this.roundDate(reservation.from) &&
            this.roundDate(date) <= this.roundDate(reservation.to);
   }
 
+
+  /**
+   * Compares two dates with year-month-day
+   *
+   * @param {Date} date1
+   * @param {Date} date2
+   * @returns
+   * @memberof CalendarComponent
+   */
   isSameDay(date1: Date, date2: Date) {
     return this.roundDate(date1).toString() === this.roundDate(date2).toString();
   }
 
+
+  /**
+   * Rounds the date to days
+   *
+   * @private
+   * @param {Date} date
+   * @returns
+   * @memberof CalendarComponent
+   */
   private roundDate(date: Date) {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
   }
