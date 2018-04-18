@@ -33,9 +33,13 @@
             {{reservation.clientName}}
           </th>
           <td></td>
-          <td *ngFor="let day of daysArray">
-            <span *ngIf="isDayReserved(day, reservation)">
-              ok
+          <td *ngFor="let day of daysArray"
+              class="p-0 position-relative">
+            <span *ngIf="isDayReserved(day, reservation)"
+                  class="reserved-day"
+                  [class.reserved-day--from]="isSameDay(day, reservation.from)"
+                  [class.reserved-day--to]="isSameDay(day, reservation.to)"
+                  >
             </span>
           </td>
           <td></td>

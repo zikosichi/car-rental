@@ -42,7 +42,6 @@ export class CalendarComponent implements OnInit {
   loadReservations() {
     this.reservationsService.getReservations().subscribe(res => {
       this.reservations = res;
-      console.log(res);
     });
   }
 
@@ -90,7 +89,16 @@ export class CalendarComponent implements OnInit {
   }
 
   isDayReserved(date: Date, reservation: Reservation) {
-    return date > new Date(reservation.from) && date < new Date(reservation.to);
+    return this.roundDate(date) >= this.roundDate(reservation.from) &&
+           this.roundDate(date) <= this.roundDate(reservation.to);
+  }
+
+  isSameDay(date1: Date, date2: Date) {
+    return this.roundDate(date1).toString() === this.roundDate(date2).toString();
+  }
+
+  private roundDate(date: Date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
   }
 
 }

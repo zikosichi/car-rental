@@ -14,9 +14,9 @@ export class ReservationsService {
   ) { }
 
   getReservations(): Observable<Reservation[]> {
-    return this.http.get('http://external.novility.com:9050/car-rental/api/Reservations')
+    return this.http.get<Reservation[]>('http://external.novility.com:9050/car-rental/api/Reservations')
       .map((res: Reservation[]) => {
-        return res;
+        return res.map(r => new Reservation(r));
       });
   }
 
