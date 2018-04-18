@@ -1,1 +1,68 @@
-Add edit
+<div class="modal-container">
+  <div class="modal-dialog"
+      role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Add Reservation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Car</label>
+            <input type="text" class="form-control"
+                   placeholder="Select the car">
+          </div>
+
+          <label>From</label>
+          <div class="input-group mb-3">
+            <input type="text"
+                   class="form-control"
+                   [matDatepicker]="fromPicker"
+                   placeholder="Select start date">
+            <mat-datepicker #fromPicker></mat-datepicker>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="fromPicker.open()">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+
+          <label>To</label>
+          <div class="input-group mb-3">
+            <input type="text"
+                   class="form-control"
+                   [matDatepicker]="toPicker"
+                   placeholder="Select start date">
+            <mat-datepicker #toPicker></mat-datepicker>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="toPicker.open()">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Client Name</label>
+            <input type="text" class="form-control"
+                   placeholder="Select the car">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
