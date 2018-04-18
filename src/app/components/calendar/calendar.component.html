@@ -1,28 +1,36 @@
 <div class="card">
-  <div class="card-header d-flex align-items-center">
-    <h5 class="mb-0">
+  <div class="card-header bg-dark d-flex align-items-center">
+    <h5 class="text-white mb-0">
       Calendar
     </h5>
   </div>
   <div class="card-body p-0">
 
-    <table class="table table-bordered m-0">
+    <table class="calendar__table table m-0">
       <thead>
         <tr>
-          <th rowspan="2">Cars</th>
+          <th rowspan="2">Clients</th>
           <th [attr.colspan]="month.colSpan"
+              class="text-center"
               *ngFor="let month of monthsArray">
-            {{month.monthName}}
+            <span class="text-truncate d-inline-block">
+              {{month.monthName}}
+            </span>
           </th>
         </tr>
-        <tr>
-          <th (click)="moveDays('LEFT')">
+        <tr class="calendar__days">
+          <th (click)="moveDays('LEFT')"
+              class="c-pointer">
             <i class="fa fa-angle-left"></i>
           </th>
-          <th *ngFor="let day of daysArray">
-            {{day | date: 'd'}}
+          <th *ngFor="let day of daysArray"
+              class="px-0">
+            <span class="calendar__day text-center">
+              {{day | date: 'd'}}
+            </span>
           </th>
-          <th (click)="moveDays('RIGHT')">
+          <th (click)="moveDays('RIGHT')"
+              class="c-pointer">
             <i class="fa fa-angle-right"></i>
           </th>
         </tr>
@@ -30,7 +38,10 @@
       <tbody>
         <tr *ngFor="let reservation of reservations">
           <th scope="row">
-            {{reservation.clientName}}
+            <span class="calendar__client-name"
+                  [title]="reservation.clientName">
+              {{reservation.clientName}}
+            </span>
           </th>
           <td></td>
           <td *ngFor="let day of daysArray"

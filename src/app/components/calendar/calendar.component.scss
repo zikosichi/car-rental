@@ -1,12 +1,35 @@
 @import '../../../theme/variables';
 
-$padding: 5px;
+$padding: 10px;
+
+.calendar {
+  &__table {
+    thead th {
+      border-right: 1px solid $cr-light-gray;
+      user-select: none;
+    }
+  }
+
+  &__day {
+    display: inline-block;
+    width: 35px;
+  }
+
+  &__client-name {
+    display: inline-block;
+    width: 130px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
 
 .reserved-day {
   display: block;
   background-color: $cr-blue;
   position: absolute;
   width: 100%;
+  cursor: pointer;
   height: calc(100% - #{$padding * 2});
   top: $padding;
 

@@ -75,7 +75,7 @@ export class CalendarComponent implements OnInit {
       if (monthsObj.hasOwnProperty(key)) {
         this.monthsArray.push({
           monthName: key,
-          colSpan: monthsObj[key] + 1
+          colSpan: monthsObj[key] + (Object.keys(monthsObj).length === 2 ? 1 : 2)
         });
       }
     }
