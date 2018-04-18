@@ -102,7 +102,6 @@ export class CalendarComponent implements OnInit {
     this.closeModal();
   }
 
-
   /**
    * On reservation update
    *
@@ -112,6 +111,18 @@ export class CalendarComponent implements OnInit {
   onReservationUpdate(res: Reservation) {
     const index = this.reservations.findIndex(r => r.id === res.id);
     this.reservations.splice(index, 1, res);
+    this.closeModal();
+  }
+
+  /**
+   * On reservation update
+   *
+   * @param {Reservation} res
+   * @memberof CalendarComponent
+   */
+  onReservationDelete(res: Reservation) {
+    const index = this.reservations.findIndex(r => r.id === res.id);
+    this.reservations.splice(index, 1);
     this.closeModal();
   }
 
@@ -161,7 +172,6 @@ export class CalendarComponent implements OnInit {
     return this.roundDate(date1).toString() === this.roundDate(date2).toString();
   }
 
-
   /**
    * Rounds the date to days
    *
@@ -173,5 +183,4 @@ export class CalendarComponent implements OnInit {
   private roundDate(date: Date) {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
   }
-
 }

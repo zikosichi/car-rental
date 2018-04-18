@@ -27,6 +27,9 @@ export class AddEditReservationComponent implements OnInit {
   create = new EventEmitter();
 
   @Output()
+  delete = new EventEmitter();
+
+  @Output()
   update = new EventEmitter();
 
   cars: Car[];
@@ -76,7 +79,9 @@ export class AddEditReservationComponent implements OnInit {
    * @memberof AddEditReservationComponent
    */
   deleteReservation() {
-
+    this.reservationsService.deleteReservation(this.formReservation).subscribe(res => {
+      this.delete.emit(this.formReservation);
+    });
   }
 
 

@@ -53,6 +53,7 @@
 <app-add-edit-reservation *ngIf="isModalVisible"
                           [reservation]="selectedReservation"
                           (update)="onReservationUpdate($event)"
+                          (delete)="onReservationDelete($event)"
                           (close)="closeModal()"
                           (create)="onReservationCreate($event)">
 </app-add-edit-reservation>
