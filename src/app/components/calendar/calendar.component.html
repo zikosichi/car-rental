@@ -1,18 +1,52 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>
-      Browse Reservations
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+<div class="card">
+  <div class="card-header d-flex align-items-center">
+    <h5 class="mb-0">
+      Calendar
+    </h5>
+  </div>
+  <div class="card-body p-0">
+
+    <table class="table table-bordered m-0">
+      <thead>
+        <tr>
+          <th rowspan="2">Cars</th>
+          <th colspan="100">First</th>
+        </tr>
+        <tr>
+          <th (click)="moveDays('LEFT')">
+            <i class="fa fa-angle-left"></i>
+          </th>
+          <th *ngFor="let day of daysArray">
+            {{day | date: 'd'}}
+          </th>
+          <th (click)="moveDays('RIGHT')">
+            <i class="fa fa-angle-right"></i>
+          </th>
+        </tr>
+      </thead>
+      <!-- <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody> -->
+    </table>
+
+  </div>
+</div>
+
+<pre>{{daysArray | json}}</pre>
