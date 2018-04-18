@@ -19,7 +19,7 @@ import { monthNames } from '../constants/month-names';
 })
 export class CalendarComponent implements OnInit {
 
-  startDate: Date = new Date();
+  startDate: Date = new Date('2018-01-15');
   daysLength = 20;
   daysArray: Date[] = [];
   monthsArray: MonthItem[] = [];
@@ -31,8 +31,17 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     this.generateDaysArray();
+    this.loadReservations();
+  }
 
+  /**
+   * Load reservations from the API
+   *
+   * @memberof CalendarComponent
+   */
+  loadReservations() {
     this.reservationsService.getReservations().subscribe(res => {
+      this.reservations = res;
       console.log(res);
     });
   }
@@ -78,6 +87,10 @@ export class CalendarComponent implements OnInit {
   moveDays(direction: 'LEFT' | 'RIGHT'): void {
     this.startDate.setDate(this.startDate.getDate() - (direction === 'LEFT' ? 1 : -1));
     this.generateDaysArray();
+  }
+
+  isDayReserved(date: Date, reservation: Reservation) {
+    return date > new Date(reservation.from) && date < new Date(reservation.to);
   }
 
 }
