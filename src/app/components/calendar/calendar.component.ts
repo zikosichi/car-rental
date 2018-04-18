@@ -144,6 +144,15 @@ export class CalendarComponent implements OnInit {
   }
 
   /**
+   * Add reservation
+   *
+   * @memberof CalendarComponent
+   */
+  addReservation() {
+    this.isModalVisible = true;
+  }
+
+  /**
    * Close add/edit modal
    *
    * @memberof CalendarComponent
