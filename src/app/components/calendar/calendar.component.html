@@ -10,7 +10,10 @@
       <thead>
         <tr>
           <th rowspan="2">Cars</th>
-          <th colspan="100">First</th>
+          <th [attr.colspan]="month.colSpan"
+              *ngFor="let month of monthsArray">
+            {{month.monthName}}
+          </th>
         </tr>
         <tr>
           <th (click)="moveDays('LEFT')">
@@ -48,5 +51,3 @@
 
   </div>
 </div>
-
-<pre>{{daysArray | json}}</pre>
