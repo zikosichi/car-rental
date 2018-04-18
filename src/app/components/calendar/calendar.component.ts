@@ -4,6 +4,13 @@ import * as _ from 'lodash';
 
 // Modes
 import { MonthItem } from '../models/month-item';
+import { Reservation } from '../../models/reservation';
+
+// Services
+import { ReservationsService } from '../../services/reservations.service';
+
+// Constants
+import { monthNames } from '../constants/month-names';
 
 @Component({
   selector: 'app-calendar',
@@ -16,25 +23,18 @@ export class CalendarComponent implements OnInit {
   daysLength = 20;
   daysArray: Date[] = [];
   monthsArray: MonthItem[] = [];
-  monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
+  reservations: Reservation[] = [];
 
-  constructor() { }
+  constructor(
+    private reservationsService: ReservationsService
+  ) { }
 
   ngOnInit() {
     this.generateDaysArray();
+
+    this.reservationsService.getReservations().subscribe(res => {
+      console.log(res);
+    });
   }
 
   /**
@@ -56,7 +56,7 @@ export class CalendarComponent implements OnInit {
     // Generate months array
     const months: number[] = this.daysArray.map(d => d.getMonth());
     const monthsObj = _.countBy(months, (m) => {
-      return this.monthNames[m];
+      return monthNames[m];
     });
 
     for (const key in monthsObj) {
