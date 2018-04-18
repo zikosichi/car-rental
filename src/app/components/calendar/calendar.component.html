@@ -37,6 +37,7 @@
               class="p-0 position-relative">
             <span *ngIf="isDayReserved(day, reservation)"
                   class="reserved-day"
+                  (click)="editReservation(reservation)"
                   [class.reserved-day--from]="isSameDay(day, reservation.from)"
                   [class.reserved-day--to]="isSameDay(day, reservation.to)"
                   >
@@ -50,6 +51,7 @@
 </div>
 
 <app-add-edit-reservation *ngIf="isModalVisible"
-                          (close)="isModalVisible = false"
+                          [reservation]="selectedReservation"
+                          (close)="closeModal()"
                           (create)="onReservationCreate($event)">
 </app-add-edit-reservation>

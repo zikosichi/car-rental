@@ -25,6 +25,7 @@ export class CalendarComponent implements OnInit {
   monthsArray: MonthItem[] = [];
   reservations: Reservation[] = [];
   isModalVisible = true;
+  selectedReservation: Reservation;
 
   constructor(
     private reservationsService: ReservationsService
@@ -54,7 +55,7 @@ export class CalendarComponent implements OnInit {
    *
    * @memberof CalendarComponent
    */
-  generateDaysArray(): void {
+  generateDaysArray() {
     this.daysArray = [];
     this.monthsArray = [];
     for (let i = 0; i < this.daysLength; i++) {
@@ -102,6 +103,27 @@ export class CalendarComponent implements OnInit {
   }
 
   /**
+   * Edit reservation
+   *
+   * @param {Reservation} reservation
+   * @memberof CalendarComponent
+   */
+  editReservation(reservation: Reservation) {
+    this.isModalVisible = true;
+    this.selectedReservation = reservation;
+  }
+
+  /**
+   * Close add/edit modal
+   *
+   * @memberof CalendarComponent
+   */
+  closeModal() {
+    this.selectedReservation = null;
+    this.isModalVisible = false;
+  }
+
+  /**
    * Check if day is reserved
    *
    * @param {Date} date
@@ -113,7 +135,6 @@ export class CalendarComponent implements OnInit {
     return this.roundDate(date) >= this.roundDate(reservation.from) &&
            this.roundDate(date) <= this.roundDate(reservation.to);
   }
-
 
   /**
    * Compares two dates with year-month-day

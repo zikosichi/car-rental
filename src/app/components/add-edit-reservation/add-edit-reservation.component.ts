@@ -20,9 +20,6 @@ export class AddEditReservationComponent implements OnInit {
   @Input()
   reservation: Reservation = new Reservation();
 
-  @Input()
-  isEdit = false;
-
   @Output()
   close = new EventEmitter();
 
@@ -30,7 +27,7 @@ export class AddEditReservationComponent implements OnInit {
   create = new EventEmitter();
 
   cars: Car[];
-  isFormSubmitted = true;
+  formReservation: Reservation = new Reservation();
 
   constructor(
     private carsService: CarsService,
@@ -38,6 +35,10 @@ export class AddEditReservationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.reservation) {
+      this.formReservation = this.reservation;
+    }
+
     this.carsService.getCars().subscribe(res => {
       this.cars = res;
     });
@@ -60,7 +61,7 @@ export class AddEditReservationComponent implements OnInit {
   onCreateReservation(reservationForm: NgForm) {
     if (reservationForm.invalid) { return; }
 
-    this.reservationsService.addReservation(this.reservation).subscribe(res => {
+    this.reservationsService.addReservation(this.formReservation).subscribe(res => {
       this.create.emit(res);
     });
   }
