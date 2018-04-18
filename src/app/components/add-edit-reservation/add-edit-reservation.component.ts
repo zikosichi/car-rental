@@ -2,6 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 
 // Models
 import { Reservation } from '../../models/reservation';
+import { Car } from '../../models/car';
+
+// Services
+import { CarsService } from '../../services/cars.service';
 
 @Component({
   selector: 'app-add-edit-reservation',
@@ -11,12 +15,19 @@ import { Reservation } from '../../models/reservation';
 export class AddEditReservationComponent implements OnInit {
 
   @Input()
-  reservation: Reservation;
+  reservation: Reservation = new Reservation();
 
-  constructor() { }
+  cars: Car[];
+
+  constructor(
+    private carsService: CarsService
+  ) { }
 
   ngOnInit() {
-    
+    this.carsService.getCars().subscribe(res => {
+      console.log(res);
+      this.cars = res;
+    });
   }
 
 }

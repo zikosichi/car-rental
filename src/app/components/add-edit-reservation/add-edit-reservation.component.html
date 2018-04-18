@@ -14,14 +14,22 @@
         <form>
           <div class="form-group">
             <label>Car</label>
-            <input type="text" class="form-control"
-                   placeholder="Select the car">
+            <select [(ngModel)]="reservation.carId"
+                    name="carId"
+                    class="form-control">
+              <option [value]="car.id"
+                      *ngFor="let car of cars">
+                {{car.carType}} - {{car.plateNumber}}
+              </option>
+            </select>
           </div>
 
           <label>From</label>
           <div class="input-group mb-3">
             <input type="text"
                    class="form-control"
+                   name="fromDate"
+                   [(ngModel)]="reservation.from"
                    [matDatepicker]="fromPicker"
                    placeholder="Select start date">
             <mat-datepicker #fromPicker></mat-datepicker>
@@ -38,8 +46,10 @@
           <div class="input-group mb-3">
             <input type="text"
                    class="form-control"
+                   name="toDate"
+                   [(ngModel)]="reservation.to"
                    [matDatepicker]="toPicker"
-                   placeholder="Select start date">
+                   placeholder="Select end date">
             <mat-datepicker #toPicker></mat-datepicker>
             <div class="input-group-append">
               <button class="btn btn-outline-secondary"
@@ -52,15 +62,26 @@
 
           <div class="form-group">
             <label>Client Name</label>
-            <input type="text" class="form-control"
-                   placeholder="Select the car">
+            <input type="text"
+                   class="form-control"
+                   name="clientName"
+                   [(ngModel)]="reservation.clientName"
+                   placeholder="Enter Client's Name">
           </div>
         </form>
+
+        <pre>{{reservation | json}}</pre>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button"
+                class="btn btn-primary">
+          Save changes
+        </button>
+        <button type="button"
+                class="btn btn-secondary">
+          Close
+        </button>
       </div>
 
     </div>
