@@ -45,7 +45,8 @@
           </th>
           <td>
             <span *ngIf="roundDate(reservation.to) < roundDate(startDate)"
-                  class="text-primary">
+                  class="text-primary"
+                  [title]="reservation.from | date">
               ...
             </span>
           </td>
@@ -61,7 +62,8 @@
           </td>
           <td>
             <span *ngIf="roundDate(reservation.from) > roundDate(endDate)"
-                  class="text-primary">
+                  class="text-primary"
+                  [title]="reservation.from | date">
               ...
             </span>
           </td>
