@@ -2,8 +2,7 @@
   <div class="modal-dialog"
       role="document">
     <form #reservationForm="ngForm"
-          class="modal-content"
-          (submit)="onCreateReservation(reservationForm)">
+          class="modal-content">
 
       <div class="modal-header">
         <h5 class="modal-title">Add Reservation</h5>
@@ -111,9 +110,26 @@
                 (click)="onModalClose()">
           Close
         </button>
+
         <button type="submit"
-                class="btn btn-primary">
+                *ngIf="!reservation"
+                class="btn btn-primary"
+                (click)="createReservation(reservationForm)">
           Create
+        </button>
+
+        <button type="button"
+                *ngIf="reservation"
+                class="btn btn-danger"
+                (click)="deleteReservation()">
+          Delete
+        </button>
+
+        <button type="submit"
+                *ngIf="reservation"
+                class="btn btn-primary"
+                (click)="updateReservation(reservationForm)">
+          Update
         </button>
       </div>
 

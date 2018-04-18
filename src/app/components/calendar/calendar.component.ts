@@ -24,7 +24,7 @@ export class CalendarComponent implements OnInit {
   daysArray: Date[] = [];
   monthsArray: MonthItem[] = [];
   reservations: Reservation[] = [];
-  isModalVisible = true;
+  isModalVisible = false;
   selectedReservation: Reservation;
 
   constructor(
@@ -99,7 +99,20 @@ export class CalendarComponent implements OnInit {
    */
   onReservationCreate(res: Reservation) {
     this.reservations.push(res);
-    this.isModalVisible = false;
+    this.closeModal();
+  }
+
+
+  /**
+   * On reservation update
+   *
+   * @param {Reservation} res
+   * @memberof CalendarComponent
+   */
+  onReservationUpdate(res: Reservation) {
+    const index = this.reservations.findIndex(r => r.id === res.id);
+    this.reservations.splice(index, 1, res);
+    this.closeModal();
   }
 
   /**

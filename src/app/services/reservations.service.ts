@@ -31,6 +31,13 @@ export class ReservationsService {
       });
   }
 
+  /**
+   * Create new reservation
+   *
+   * @param {Reservation} reservation
+   * @returns {Observable<Reservation>}
+   * @memberof ReservationsService
+   */
   addReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.post<Reservation>(`${environment.apiUrl}/Reservations`, reservation)
       .map((res: Reservation) => {
@@ -38,6 +45,24 @@ export class ReservationsService {
         res.to = new Date(res.to);
         return res;
       });
+  }
+
+  /**
+   * Update reservation
+   *
+   * @memberof ReservationsService
+   */
+  updateReservation(reservation: Reservation): Observable<boolean> {
+    return this.http.put<boolean>(`${environment.apiUrl}/Reservations/${reservation.id}`, reservation);
+  }
+
+  /**
+   * Update reservation
+   *
+   * @memberof ReservationsService
+   */
+  deleteReservation(reservation: Reservation): Observable<boolean> {
+    return this.http.delete<boolean>(`${environment.apiUrl}/Reservations/${reservation.id}`);
   }
 
 }

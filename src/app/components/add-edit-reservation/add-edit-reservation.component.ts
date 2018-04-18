@@ -26,6 +26,9 @@ export class AddEditReservationComponent implements OnInit {
   @Output()
   create = new EventEmitter();
 
+  @Output()
+  update = new EventEmitter();
+
   cars: Car[];
   formReservation: Reservation = new Reservation();
 
@@ -36,7 +39,7 @@ export class AddEditReservationComponent implements OnInit {
 
   ngOnInit() {
     if (this.reservation) {
-      this.formReservation = this.reservation;
+      this.formReservation = {...this.reservation};
     }
 
     this.carsService.getCars().subscribe(res => {
@@ -58,12 +61,38 @@ export class AddEditReservationComponent implements OnInit {
    *
    * @memberof AddEditReservationComponent
    */
-  onCreateReservation(reservationForm: NgForm) {
+  createReservation(reservationForm: NgForm) {
     if (reservationForm.invalid) { return; }
 
     this.reservationsService.addReservation(this.formReservation).subscribe(res => {
       this.create.emit(res);
     });
   }
+
+  /**
+   * Delete reservation
+   *
+   * @param {NgForm} reservationForm
+   * @memberof AddEditReservationComponent
+   */
+  deleteReservation() {
+
+  }
+
+
+  /**
+   * Update Reservation
+   *
+   * @memberof AddEditReservationComponent
+   */
+  updateReservation(reservationForm: NgForm) {
+    if (reservationForm.invalid) { return; }
+
+    this.reservationsService.updateReservation(this.formReservation).subscribe(res => {
+      this.update.emit(this.formReservation);
+    });
+  }
+
+
 
 }
